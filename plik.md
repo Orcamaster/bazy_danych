@@ -2,11 +2,11 @@
 ```sql
 create table postac (id_postaci int NOT NULL primary key auto_increment, nazwa varchar(40), rodzaj enum("wiking","ptak","kobieta"), data_ur date, wiek int unsigned);
 
-insert into postac values(default, "Bjorn","wiking","1700-10-23",323);
+insert into postac values(default, "Bjorn", "wiking", "1700-10-23", 323);
 
-insert into postac values(default, "Drozd","ptak","2022-03-19",1);
+insert into postac values(default, "Drozd", "ptak", "2022-03-19", 1);
 
-insert into postac values(default, "Tesciowa","kobieta","1960-05-11",63);
+insert into postac values(default, "Tesciowa", "kobieta", "1960-05-11", 63);
 
 update postac set wiek=88 where nazwa="Tesciowa";
 ```
@@ -24,7 +24,7 @@ insert into walizka values (default, 4, "teczowy", 1);
 
 # 3
 ```sql
-create table izba(adres_budynku int NOT NULL, nazwa_izby varchar(40) not null, primary key(adres_budynku, nazwa_izby), metraz int unsigned, wlasciciel int null, foreign key(wlasciciel) references postac(id_postaci) on delete cascade);
+create table izba (adres_budynku int NOT NULL, nazwa_izby varchar(40) not null, primary key(adres_budynku, nazwa_izby), metraz int unsigned, wlasciciel int null, foreign key(wlasciciel) references postac(id_postaci) on delete cascade);
 
 alter table izba add kolor_izby varchar(40) after metraz;
 
