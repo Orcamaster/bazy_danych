@@ -1,5 +1,4 @@
 # Lab 04
-
 ## 1
 ```sql
 create table postac (id_postaci int NOT NULL primary key auto_increment, nazwa varchar(40), rodzaj enum("wiking","ptak","kobieta"), data_ur date, wiek int unsigned);
