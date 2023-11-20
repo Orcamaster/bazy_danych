@@ -39,9 +39,53 @@ alter table postac add primary key(pesel);
 desc postac;
 ```
 
-## 2c
+## 2b
 ```sql
 alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena');
 ```
 
+## 2c
+```sql
+insert into postac values(92839405101,11,'Gertruda Nieszczera','syrena','1800-03-06',223,null,null);
+```
 
+## 3a
+```sql
+select * from postac where nazwa='Bjorn';
+update postac set statek='Magdalena' where nazwa LIKE '%a%';
+```
+
+## 3b
+```sql
+# przyklad 1
+select * from statek where data_wodowania >= '1901-01-01' and data_wodowania <= '2000-12-31';
+# przyklad 2
+select * from statek where data_wodowania between '1901-01-01' and '2000-12-31';
+# przyklad 3
+select * from statek where year(data_wodowania) between 1901 and 2000;
+
+update statek set max_ladownosc= 0.7 * max_ladownosc where year(data_wodowania) between 1901 and 2000;
+```
+
+## 3c
+```sql
+# sposob 1
+alter table postac modify wiek int unsigned check(wiek < 1000);
+
+# sposob 2
+alter table postac add check (wiek < 1000);
+
+# test dzialania check na kolumnie wiek
+update postac set wiek=1000 where nazwa='Drozd'
+```
+
+## 4a
+```sql
+alter table postac modify rodzaj enum('wiking','ptak','kobieta','syrena','waz');
+insert into postac values(92456405102,12,'Waz Loko','waz','1100-04-16',823,null,null);
+```
+
+## 4b
+```sql
+
+```
