@@ -87,5 +87,11 @@ insert into postac values(92456405102,12,'Waz Loko','waz','1100-04-16',823,null,
 
 ## 4b
 ```sql
+create table marynarz like postac;
+insert into marynarz select * from postac where statek is not null;
+```
 
+## 4c
+```sql
+alter table marynarz add foreign key marynarz(statek) references statek(nazwa_statku) on delete set null;
 ```
