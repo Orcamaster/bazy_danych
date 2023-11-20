@@ -1,3 +1,5 @@
+# Lab 05
+
 ## 1a
 ```sql
 select * from postac where rodzaj='wiking' order by wiek DESC;
@@ -94,4 +96,41 @@ insert into marynarz select * from postac where statek is not null;
 ## 4c
 ```sql
 alter table marynarz add foreign key marynarz(statek) references statek(nazwa_statku) on delete set null;
+```
+
+## 5a
+```sql
+update postac set statek=null;
+```
+
+## 5b
+```sql
+delete from postac where nazwa='Marcel';
+```
+
+## 5c
+```sql
+delete from statek;
+```
+
+## 5d
+```sql
+alter table postac drop foreign key postac_ibfk_1;
+alter table marynarz drop foreign key marynarz_ibfk_1;
+drop table statek;
+```
+
+## 5e
+```sql
+create table zwierz(
+id_zwierza int primary key auto_increment,
+nazwa varchar(40),
+wiek int);
+desc zwierz;
+```
+
+## 5f
+```sql
+insert into zwierz values(default,'Waz Loko',823);
+insert into zwierz values(default,'Drozd',1);
 ```
