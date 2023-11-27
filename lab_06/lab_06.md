@@ -76,5 +76,8 @@ select nazwa, waga, waga * 0.7 as masa_netto, waga * 0.3 as odpady from zasob;
 ```sql
 select * from zasob where rodzaj is null;
 ```
+
 ## 5.3
+```sql
 select distinct nazwa from zasob where nazwa LIKE 'ba%' or nazwa LIKE '%os';
+```
