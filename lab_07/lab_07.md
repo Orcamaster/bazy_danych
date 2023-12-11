@@ -49,3 +49,55 @@ inner join zasob z on z.idZasobu = e.idZasobu;
 ```sql
 select * from kreatura k left join ekwipunek e on k.idKreatury = e.idKreatury where e.idKreatury is null;
 ```
+
+## 4.1
+```sql
+# ?
+select * from kreatura natural join ekwipunek;
+```
+
+## 4.2
+```sql
+select k.nazwa, e.ilosc, z.nazwa from kreatura k
+inner join ekwipunek e on k.idKreatury = e.idKreatury 
+inner join zasob z on z.idZasobu = e.idZasobu 
+where z.rodzaj = 'jedzenie'
+order by k.dataUr desc limit 5;
+```
+
+## 4.3
+```sql
+select concat(k1.nazwa, ' - ', k2.nazwa) from kreatura k1, kreatura k2
+where k1.idKreatury - k2.idKreatury = 5;
+```
+
+## 5.1
+```sql
+select k.rodzaj, avg(e.ilosc * z.waga) from kreatura k
+inner join ekwipunek e on k.idKreatury = e.idKreatury 
+inner join zasob z on z.idZasobu = e.idZasobu
+where k.rodzaj not in ('malpa','waz')
+and e.ilosc < 30 group by k.rodzaj;
+```
+
+## 5.2
+```sql
+# z użyciem UNION
+select 'najmlodsza', a.maxData, b.nazwa, a.rodzaj
+from (select max(dataUr) maxData, rodzaj from kreatura
+group by rodzaj) a,
+(select nazwa, dataUr from kreatura) b
+where a.maxData = b.dataUr
+union
+select 'najstarsza', a.minData, b.nazwa, a.rodzaj
+from (select min(dataUr) minData, rodzaj from kreatura
+group by rodzaj) a,
+(select nazwa, dataUr from kreatura) b
+where a.minData = b.dataUr;
+
+# bez użycia UNION
+select a.nazwa, a.rodzaj, a.dataUr from kreatura a,
+(select min(dataUr) min, max(dataUr) max
+from kreatura group by rodzaj) b
+where b.min = a.dataUr or b.max=a.dataUr;
+```
