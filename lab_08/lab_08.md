@@ -79,3 +79,12 @@ select u.id_wyprawy, (sum(z.waga * z.ilosc)/count(u.id_uczestnika)) as srednia_w
 inner join ekwipunek ek on ek.idZasobu = z.idZasobu
 inner join uczestnicy u on ek.idKreatury = u.id_uczestnika group by u.id_wyprawy;
 ```
+
+## 5.1
+```sql
+select k.nazwa, abs(datediff(w.data_rozpoczecia, k.dataUr)) from kreatura k
+inner join uczestnicy u on u.id_uczestnika = k.idKreatury
+inner join etapy_wyprawy ew on u.id_wyprawy = ew.idWyprawy
+inner join wyprawa w on w.id_wyprawy = u.id_wyprawy
+where ew.sektor = 7;
+```
